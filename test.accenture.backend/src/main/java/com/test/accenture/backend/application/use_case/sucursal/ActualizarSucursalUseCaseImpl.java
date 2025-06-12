@@ -9,6 +9,7 @@ import com.test.accenture.backend.domain.service.EntidadNoEncontradaException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +20,10 @@ public class ActualizarSucursalUseCaseImpl implements ActualizarSucursalUseCase 
     @Override
     @Transactional
     public SucursalDTO ejecutar(ActualizarSucursalDTO actualizarSucursalDTO) {
+        if (actualizarSucursalDTO == null || !StringUtils.hasText(actualizarSucursalDTO.getNombre())) {
+            throw new IllegalArgumentException("El nombre de la sucursal es obligatorio");
+        }
+
         Sucursal sucursal = sucursalRepository.findById(actualizarSucursalDTO.getId())
                 .orElseThrow(() -> new EntidadNoEncontradaException("Sucursal no encontrada con ID: " + actualizarSucursalDTO.getId()));
 
