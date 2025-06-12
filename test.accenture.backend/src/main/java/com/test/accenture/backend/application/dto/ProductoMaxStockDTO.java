@@ -1,7 +1,7 @@
 package com.test.accenture.backend.application.dto;
 
 import lombok.*;
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 
 @Data
