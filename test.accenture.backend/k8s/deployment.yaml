@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-accenture-backend
+  labels:
+    app: test-accenture-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: test-accenture-backend
+  template:
+    metadata:
+      labels:
+        app: test-accenture-backend
+    spec:
+      containers:
+      - name: test-accenture-backend
+        image: test-accenture-backend:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 5000
+          initialDelaySeconds: 60
+          periodSeconds: 15
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
+        - name: JAVA_OPTS
+          value: "-Xmx512m -Xms256m" 

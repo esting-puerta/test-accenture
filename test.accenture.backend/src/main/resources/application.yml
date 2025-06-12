@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${DB_URL:jdbc:mysql://none:3306/railway}
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:test}
+    url: ENC(FjcJnQhzGbyAjkXzwMsrRZfFnVBKo3BV2qG3Dl3U6XBT77qWZeyEUdPokUEvhncbqrkIqKf4e2E=)
+    username: ENC(lX8Qk8JIn9SWe6pOcfhhCg==)
+    password: ENC(2Co1TeKqOxuig8lWiGyb8ZjR4SgpYwPXzOABQZWFqGIxFdGIuT5kbopBWPf51LXo)
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       minimum-idle: 2
@@ -50,3 +50,9 @@ springdoc:
   api-docs:
     path: /api-docs
   packages-to-scan: com.test.accenture.backend.interfaces.controller
+
+jasypt:
+  encryptor:
+    password: PASS_TO_jasypt
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator

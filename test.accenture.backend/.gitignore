@@ -38,6 +38,3 @@ out/
 .idea/
 .idea
 .idea/** */
-
-run.sh
-run.bat
