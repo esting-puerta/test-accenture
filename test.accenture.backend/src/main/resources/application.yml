@@ -11,7 +11,6 @@ spring:
       connection-timeout: 120000
       leak-detection-threshold: 120000 
 
-
   jpa:
     hibernate:
       naming:
@@ -23,7 +22,9 @@ spring:
       hibernate:
         format_sql: true
 
-  
+  r2dbc:
+    url: r2dbc:mysql://root:EfpVWgYHnPiMnZcVhKtkKJpSBKjezaDG@metro.proxy.rlwy.net:28851/railway?ssl=false
+
   jackson:
     locale: es_CO
     time-zone: America/Bogota
@@ -33,4 +34,13 @@ spring:
       write-dates-as-timestamps: true
       
 server:
-  port : 5000
+  port: 5000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
