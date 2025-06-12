@@ -1,7 +1,8 @@
 package com.test.accenture.backend.domain.service;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class StockPositivoValidator implements ConstraintValidator<StockPositivo, Integer> {
     

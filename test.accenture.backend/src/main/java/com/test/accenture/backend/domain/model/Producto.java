@@ -3,17 +3,17 @@ package com.test.accenture.backend.domain.model;
 import lombok.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "productos", 
-       uniqueConstraints = @UniqueConstraint(columnNames = {"nombre", "sucursal_id"}))
+@Table(name = "productos", uniqueConstraints = @UniqueConstraint(columnNames = {"nombre", "sucursal_id"}))
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

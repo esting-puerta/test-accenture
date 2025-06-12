@@ -1,18 +1,18 @@
 package com.test.accenture.backend.domain.model;
 
-import lombok.*;
 import jakarta.persistence.*;
+import lombok.*;
 import jakarta.validation.constraints.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "sucursales", 
-       uniqueConstraints = @UniqueConstraint(columnNames = {"nombre", "franquicia_id"}))
+@Table(name = "sucursales")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
