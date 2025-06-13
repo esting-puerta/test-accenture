@@ -12,13 +12,15 @@ import { Observable } from 'rxjs';
 export class CategoriaManagerComponent implements OnInit {
 
 
-    categoria: Categoria = {
+    type: number = 0;
+    categoriaBase: Categoria = {
         id: 0,
         nombre: '',
         color: '#3498db',
         fechaCreacion: new Date(),
         fechaActualizacion: new Date(),
     };
+    categoria: Categoria = this.categoriaBase;
     categoriaEditando: Categoria | null = null;
     isModalOpen = false;
     showNewTaskForm = false;
@@ -52,6 +54,7 @@ export class CategoriaManagerComponent implements OnInit {
     }
 
     actualizar(categoria: Categoria): void {
+        this.type = 1;
         this.categoria = { ...categoria };
     }
 

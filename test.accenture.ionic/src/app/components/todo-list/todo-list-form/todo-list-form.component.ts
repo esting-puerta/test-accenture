@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { TodoService } from '../../../services/todo.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { Tarea } from '../../../models/tarea.model';
+import { CategoriaService } from 'src/app/services/categoria.service';
 
 interface Categoria {
   id: number;
@@ -27,8 +28,11 @@ export class TodoListFormComponent implements OnInit {
   categorias$: Observable<Categoria[]>;
   @Output() return = new EventEmitter();
 
-  constructor(private todoService: TodoService, private toastService: ToastService) {
-    this.categorias$ = this.todoService.getCategorias();
+  constructor(
+    private todoService: TodoService, 
+    private toastService: ToastService, 
+    private categoriaService: CategoriaService) {
+    this.categorias$ = this.categoriaService.obtenerCategorias();
   }
 
   ngOnInit() {}

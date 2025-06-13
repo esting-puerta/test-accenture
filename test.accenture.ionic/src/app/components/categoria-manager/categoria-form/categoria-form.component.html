@@ -8,9 +8,14 @@
 <!-- Card para crear nueva categoría -->
 <ion-card>
     <ion-card-header>
-        <ion-card-title>
+        <ion-card-title *ngIf="type == 0" >
             <ion-icon name="add-circle-outline"></ion-icon>
             Nueva Categoría
+        </ion-card-title>
+
+        <ion-card-title *ngIf="type == 1" >
+            <ion-icon name="add-circle-outline"></ion-icon>
+            Actualizar Categoría
         </ion-card-title>
     </ion-card-header>
     <ion-card-content>
@@ -31,9 +36,15 @@
                 <div class="selected-color" [style.background-color]="categoria.color"></div>
             </div>
         </ion-item>
-        <ion-button expand="block" (click)="agregarCategoria()" [disabled]="!categoria.nombre">
+
+        <ion-button *ngIf="type == 0" expand="block" (click)="agregarCategoria()" [disabled]="!categoria.nombre">
             <ion-icon name="add-circle-outline" slot="start"></ion-icon>
             Agregar Categoría
+        </ion-button>
+
+        <ion-button *ngIf="type == 1" expand="block" (click)="guardarEdicion()" [disabled]="!categoria.nombre">
+            <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+            Actualizar Categoría
         </ion-button>
     </ion-card-content>
 </ion-card>

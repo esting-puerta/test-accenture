@@ -3,7 +3,6 @@ import { Categoria } from 'src/app/models/categoria.model';
 import { CategoriaService } from 'src/app/services/categoria.service';
 import { ToastService } from 'src/app/services/toast.service';
 
-
 @Component({
   selector: 'app-categoria-form',
   templateUrl: './categoria-form.component.html',
@@ -24,13 +23,15 @@ export class CategoriaFormComponent implements OnInit {
   ];
 
   @Output() return = new EventEmitter();
-  @Input() categoria: Categoria = {
+  @Input() type: number = 0;
+  categoriaBase: Categoria = {
     id: 0,
     nombre: '',
     color: '#3498db',
     fechaCreacion: new Date(),
     fechaActualizacion: new Date(),
   };
+  @Input() categoria: Categoria = this.categoriaBase;
 
   constructor(private categoriaService: CategoriaService, private toastService: ToastService) { }
 
@@ -50,13 +51,7 @@ export class CategoriaFormComponent implements OnInit {
       this.categoria.id =  id;
       this.categoriaService.agregarCategoria(this.categoria as Categoria);
       this.toastService.showSuccess(' Categoria agregada!');
-      this.categoria = {
-        id: 0,
-        nombre: '',
-        color: '#3498db',
-        fechaCreacion: new Date(),
-        fechaActualizacion: new Date(),
-      };
+      this.categoria = this.categoriaBase;
     }
   }
 
@@ -68,13 +63,7 @@ export class CategoriaFormComponent implements OnInit {
       );
 
       this.toastService.showSuccess(' Categoria actualizada!');
-      this.categoria = {
-        id: 0,
-        nombre: '',
-        color: '#3498db',
-        fechaCreacion: new Date(),
-        fechaActualizacion: new Date(),
-      };
+      this.categoria = this.categoriaBase;
     }
   }
 }

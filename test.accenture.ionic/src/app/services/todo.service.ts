@@ -8,36 +8,6 @@ import { Categoria } from '../models/categoria.model';
   providedIn: 'root'
 })
 export class TodoService {
-  private categorias: Categoria[] = [
-    { 
-      id: 1, 
-      nombre: 'Trabajo',
-      color: '#FF5733',
-      fechaCreacion: new Date(),
-      fechaActualizacion: new Date()
-    },
-    { 
-      id: 2, 
-      nombre: 'Personal',
-      color: '#33FF57',
-      fechaCreacion: new Date(),
-      fechaActualizacion: new Date()
-    },
-    { 
-      id: 3, 
-      nombre: 'Estudio',
-      color: '#3357FF',
-      fechaCreacion: new Date(),
-      fechaActualizacion: new Date()
-    },
-    { 
-      id: 4, 
-      nombre: 'Hogar',
-      color: '#F333FF',
-      fechaCreacion: new Date(),
-      fechaActualizacion: new Date()
-    }
-  ];
 
   private tareas: Tarea[] = [
     {
@@ -62,14 +32,11 @@ export class TodoService {
 
   constructor() { }
 
-  getCategorias(): Observable<Categoria[]> {
-    return of(this.categorias).pipe(delay(500));
-  }
-
   agregarTarea(tarea: Omit<Tarea, 'id' | 'fechaCreacion' | 'fechaActualizacion'>): Observable<Tarea> {
+    const id = Math.floor(Math.random() * (1000000 - 100 + 1)) + 100;
     const nuevaTarea: Tarea = {
       ...tarea,
-      id: this.tareas.length + 1,
+      id: id,
       completada: false,
       fechaCreacion: new Date(),
       fechaActualizacion: new Date()

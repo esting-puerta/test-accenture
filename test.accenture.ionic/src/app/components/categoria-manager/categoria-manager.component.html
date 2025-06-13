@@ -16,7 +16,7 @@
     <ion-grid *ngIf="!showNewTaskForm && !showTaskList">
         <ion-row class="ion-align-items-stretch">
             <ion-col size="12" size-md="6">
-                <ion-card class="action-card ion-activatable ripple-parent" (click)="selectAction('create')">
+                <ion-card class="action-card ion-activatable ripple-parent" (click)="selectAction('create'); this.type = 0; categoria = categoriaBase">
                     <ion-card-content class="ion-text-center">
                         <ion-icon name="add-circle-outline"></ion-icon>
                         <ion-card-title>Nueva Categoría</ion-card-title>
@@ -37,10 +37,19 @@
     </ion-grid>
 
     <!-- Card para crear nueva categoría -->
-    <app-categoria-form *ngIf="showNewTaskForm" [categoria]="categoria" (return)="showNewTaskForm = false"></app-categoria-form>
+    <app-categoria-form
+        *ngIf="showNewTaskForm" 
+        [categoria]="categoria" 
+        [type]="type" 
+        (return)="showNewTaskForm = false">
+    </app-categoria-form>
 
     <!-- Card para listar categorías -->
-    <app-categoria-list *ngIf="showTaskList" (editar)="actualizar($event)" (return)="showNewTaskForm = false; showTaskList = false"></app-categoria-list>
+    <app-categoria-list 
+        *ngIf="showTaskList" 
+        (editar)="actualizar($event); selectAction('create')" 
+        (return)="showNewTaskForm = false; showTaskList = false">
+    </app-categoria-list>
 
 </ion-content> 
 

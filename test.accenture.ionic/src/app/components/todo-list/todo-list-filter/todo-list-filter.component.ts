@@ -3,6 +3,7 @@ import { Observable, map } from 'rxjs';
 import { Tarea } from '../../../models/tarea.model';
 import { Categoria } from '../../../models/categoria.model';
 import { TodoService } from '../../../services/todo.service';
+import { CategoriaService } from '../../../services/categoria.service';
 
 @Component({
   selector: 'app-todo-list-filter',
@@ -18,9 +19,9 @@ export class TodoListFilterComponent implements OnInit {
   categoriaSeleccionada: string = 'null';
   @Output() return = new EventEmitter();
 
-  constructor(private todoService: TodoService) {
+  constructor(private todoService: TodoService, private categoriaService: CategoriaService) {
     this.tareas$ = this.todoService.getTareas();
-    this.categorias$ = this.todoService.getCategorias();
+    this.categorias$ = this.categoriaService.obtenerCategorias();
     this.tareasFiltradas$ = this.tareas$;
   }
 
