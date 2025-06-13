@@ -87,7 +87,7 @@ El proyecto incluye archivos de configuración de Kubernetes en el directorio `k
 - Proporciona alta disponibilidad y capacidad de respuesta automática
 
 ## Ejecutar con Docker y Kubernetes
-Para ejecutar la aplicación usando contenedores Docker y Kubernetes debe ejecutar el archivo run.sh
+Para ejecutar la aplicación backend usando contenedores Docker y Kubernetes debe ejecutar el archivo run.sh
 ```bash
 run.sh
 ```
