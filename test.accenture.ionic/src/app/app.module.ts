@@ -6,6 +6,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 
+// Firebase imports
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-config';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -14,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

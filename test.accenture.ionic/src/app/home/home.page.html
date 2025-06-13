@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Remote Config Demo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Remote Config Demo</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="ion-padding">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Remote Config Values</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Feature Enabled:</ion-label>
+          <ion-badge [color]="featureEnabled ? 'success' : 'danger'">
+            {{ featureEnabled ? 'Yes' : 'No' }}
+          </ion-badge>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Welcome Message:</ion-label>
+          <ion-text>{{ welcomeMessage }}</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Max Retries:</ion-label>
+          <ion-text>{{ maxRetries }}</ion-text>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content> 
