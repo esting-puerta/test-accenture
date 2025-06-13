@@ -1,0 +1,146 @@
+ion-content {
+    --background: #f5f5f5;
+}
+
+ion-card {
+    margin: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+}
+
+ion-card-header {
+    padding: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+ion-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ion-color-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    ion-icon {
+        font-size: 1.4rem;
+    }
+}
+
+ion-list {
+    background: transparent;
+    padding: 0;
+}
+
+ion-item {
+    --background: #ffffff;
+    margin: 8px 0;
+    border-radius: 8px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --inner-padding-end: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --highlight-height: 0;
+    --border-color: transparent;
+
+    ion-icon {
+        color: var(--ion-color-primary);
+        font-size: 1.2rem;
+        margin-right: 8px;
+    }
+
+    ion-label {
+        color: var(--ion-color-medium);
+        font-weight: 500;
+
+        h2 {
+            color: var(--ion-color-dark);
+            font-weight: 600;
+        }
+    }
+
+    ion-input {
+        --padding-start: 8px;
+        font-size: 1rem;
+        color: var(--ion-color-dark);
+
+        &[type="color"] {
+            --padding-start: 0;
+            --padding-end: 0;
+            width: 100%;
+            height: 40px;
+        }
+    }
+}
+
+ion-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+ion-button {
+    margin-top: 16px;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb), 0.2);
+    
+    ion-icon {
+        margin-right: 8px;
+    }
+}
+
+ion-item-sliding {
+    margin: 8px 0;
+}
+
+ion-item-option {
+    --padding-start: 16px;
+    --padding-end: 16px;
+}
+
+ion-modal {
+    --height: auto;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.color-picker {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.color-option {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid transparent;
+
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    &.selected {
+        border-color: var(--ion-color-primary);
+        transform: scale(1.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.selected-color {
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    border: 2px solid var(--ion-color-medium);
+    margin-top: 8px;
+} 

@@ -1,0 +1,276 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+@import "@ionic/angular/css/palettes/dark.class.css"; 
+/* @import "@ionic/angular/css/palettes/dark.system.css"; */
+
+/* Custom Global Styles */
+:root {
+  /* Main Colors */
+  --accenture-primary: #7C4DFF;
+  --accenture-primary-light: #B39DDB;
+  --accenture-primary-dark: #4527A0;
+  
+  --accenture-secondary: #00BFA5;
+  --accenture-secondary-light: #1DE9B6;
+  --accenture-secondary-dark: #00897B;
+  
+  /* Neutral Colors */
+  --accenture-dark: #1A1A1A;
+  --accenture-gray-900: #2D2D2D;
+  --accenture-gray-800: #3D3D3D;
+  --accenture-gray-700: #4D4D4D;
+  --accenture-gray-600: #6D6D6D;
+  --accenture-gray-500: #8D8D8D;
+  --accenture-gray-400: #ADADAD;
+  --accenture-gray-300: #CDCDCD;
+  --accenture-gray-200: #E5E5E5;
+  --accenture-gray-100: #F5F5F5;
+  --accenture-light: #FFFFFF;
+  
+  /* Status Colors */
+  --accenture-success: #00C853;
+  --accenture-success-light: #69F0AE;
+  --accenture-success-dark: #009624;
+  
+  --accenture-warning: #FFD600;
+  --accenture-warning-light: #FFEA00;
+  --accenture-warning-dark: #C7A600;
+  
+  --accenture-danger: #FF1744;
+  --accenture-danger-light: #FF616F;
+  --accenture-danger-dark: #C4001D;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.2);
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--accenture-primary), var(--accenture-primary-dark));
+  --gradient-secondary: linear-gradient(135deg, var(--accenture-secondary), var(--accenture-secondary-dark));
+  --gradient-success: linear-gradient(135deg, var(--accenture-success), var(--accenture-success-dark));
+  --gradient-warning: linear-gradient(135deg, var(--accenture-warning), var(--accenture-warning-dark));
+  --gradient-danger: linear-gradient(135deg, var(--accenture-danger), var(--accenture-danger-dark));
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--accenture-gray-900);
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: var(--accenture-gray-700);
+  line-height: 1.6;
+}
+
+/* Custom Header */
+.custom-header {
+  background: var(--gradient-primary);
+  color: var(--accenture-light);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+
+  h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--accenture-light);
+  }
+}
+
+/* Cards */
+ion-card {
+  background: linear-gradient(to right, var(--accenture-primary-light), var(--accenture-secondary-light));
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  margin: 16px;
+  overflow: hidden;
+  border: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  ion-card-header {
+    background: var(--accenture-gray-100);
+    padding: 1rem;
+    border-bottom: 1px solid var(--accenture-gray-200);
+  }
+
+  ion-card-content {
+    padding: 1.5rem;
+  }
+}
+
+/* Items */
+ion-item {
+  --background: var(--accenture-light);
+  --border-color: transparent;
+  --highlight-height: 0;
+  margin: 8px 0;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  ion-icon {
+    color: var(--accenture-primary);
+    font-size: 1.25rem;
+  }
+
+  ion-label {
+    color: var(--accenture-gray-800);
+    font-weight: 500;
+  }
+}
+
+/* Buttons */
+ion-button {
+  --background: var(--accenture-primary);
+  --background-hover: var(--accenture-primary-dark);
+  --border-radius: 12px;
+  --box-shadow: var(--shadow-md);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  padding: 12px 24px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    --box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  &.button-secondary {
+    --background: var(--accenture-secondary);
+    --background-hover: var(--accenture-secondary-dark);
+  }
+
+  &.button-success {
+    --background: var(--accenture-success);
+    --background-hover: var(--accenture-success-dark);
+  }
+
+  &.button-warning {
+    --background: var(--accenture-warning);
+    --background-hover: var(--accenture-warning-dark);
+  }
+
+  &.button-danger {
+    --background: var(--accenture-danger);
+    --background-hover: var(--accenture-danger-dark);
+  }
+
+  ion-icon {
+    margin-right: 8px;
+  }
+}
+
+/* Badges */
+ion-badge {
+  background: var(--accenture-primary);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-sm);
+
+  &.badge-secondary {
+    background: var(--accenture-secondary);
+  }
+
+  &.badge-success {
+    background: var(--accenture-success);
+  }
+
+  &.badge-warning {
+    background: var(--accenture-warning);
+    color: var(--accenture-gray-900);
+  }
+
+  &.badge-danger {
+    background: var(--accenture-danger);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--accenture-gray-100);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accenture-gray-400);
+  border-radius: 4px;
+  
+  &:hover {
+    background: var(--accenture-gray-500);
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
