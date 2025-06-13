@@ -1,3 +1,4 @@
+
 <ion-header>
     <ion-toolbar color="primary">
         <ion-title>Gestión de Categorías</ion-title>
@@ -10,111 +11,36 @@
 </div>
 
 <ion-content class="ion-padding">
+
+    <!-- Mini-cards para seleccionar acción -->
+    <ion-grid *ngIf="!showNewTaskForm && !showTaskList">
+        <ion-row class="ion-align-items-stretch">
+            <ion-col size="12" size-md="6">
+                <ion-card class="action-card ion-activatable ripple-parent" (click)="selectAction('create')">
+                    <ion-card-content class="ion-text-center">
+                        <ion-icon name="add-circle-outline"></ion-icon>
+                        <ion-card-title>Nueva Categoría</ion-card-title>
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col size="12" size-md="6">
+                <ion-card class="action-card ion-activatable ripple-parent" (click)="selectAction('filter')">
+                    <ion-card-content class="ion-text-center">
+                        <ion-icon name="filter-outline"></ion-icon>
+                        <ion-card-title>Categorías Existentes</ion-card-title>
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
     <!-- Card para crear nueva categoría -->
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title>
-                <ion-icon name="add-circle-outline"></ion-icon>
-                Nueva Categoría
-            </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-item>
-                <ion-icon name="pricetag-outline" slot="start"></ion-icon>
-                <ion-label position="stacked">Nombre</ion-label>
-                <ion-input [(ngModel)]="nuevaCategoria.nombre" placeholder="Ingrese el nombre de la categoría"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-icon name="color-palette-outline" slot="start"></ion-icon>
-                <ion-label position="stacked">Color</ion-label>
-                <div class="color-picker">
-                    <div class="color-grid">
-                        <div *ngFor="let color of predefinedColors" 
-                             class="color-option" 
-                             [style.background-color]="color"
-                             [class.selected]="nuevaCategoria.color === color"
-                             (click)="selectColor(color)">
-                        </div>
-                    </div>
-                    <div class="selected-color" [style.background-color]="nuevaCategoria.color"></div>
-                </div>
-            </ion-item>
-            <ion-button expand="block" (click)="agregarCategoria()" [disabled]="!nuevaCategoria.nombre">
-                <ion-icon name="add-circle-outline" slot="start"></ion-icon>
-                Agregar Categoría
-            </ion-button>
-        </ion-card-content>
-    </ion-card>
+    <app-categoria-form *ngIf="showNewTaskForm" [categoria]="categoria" (return)="showNewTaskForm = false"></app-categoria-form>
 
     <!-- Card para listar categorías -->
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title>
-                <ion-icon name="list-outline"></ion-icon>
-                Categorías Existentes
-            </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-list>
-                <ion-item-sliding *ngFor="let categoria of categorias$ | async">
-                    <ion-item>
-                        <ion-label>
-                            <h2>{{categoria.nombre}}</h2>
-                        </ion-label>
-                        <ion-badge slot="end" [style.background-color]="categoria.color">
-                            Color
-                        </ion-badge>
-                    </ion-item>
-                    <ion-item-options side="end">
-                        <ion-item-option color="primary" (click)="iniciarEdicion(categoria)">
-                            <ion-icon slot="icon-only" name="create"></ion-icon>
-                        </ion-item-option>
-                        <ion-item-option color="danger" (click)="eliminarCategoria(categoria.id)">
-                            <ion-icon slot="icon-only" name="trash"></ion-icon>
-                        </ion-item-option>
-                    </ion-item-options>
-                </ion-item-sliding>
-            </ion-list>
-        </ion-card-content>
-    </ion-card>
+    <app-categoria-list *ngIf="showTaskList" (editar)="actualizar($event)" (return)="showNewTaskForm = false; showTaskList = false"></app-categoria-list>
 
-    <!-- Modal de edición -->
-    <ion-modal [isOpen]="isModalOpen">
-        <ng-template>
-            <ion-header>
-                <ion-toolbar>
-                    <ion-title>Editar Categoría</ion-title>
-                    <ion-buttons slot="end">
-                        <ion-button (click)="cancelarEdicion()">Cancelar</ion-button>
-                    </ion-buttons>
-                </ion-toolbar>
-            </ion-header>
-            <ion-content class="ion-padding">
-                <ion-item *ngIf="categoriaEditando">
-                    <ion-icon name="pricetag-outline" slot="start"></ion-icon>
-                    <ion-label position="stacked">Nombre</ion-label>
-                    <ion-input [(ngModel)]="categoriaEditando.nombre" placeholder="Ingrese el nombre de la categoría"></ion-input>
-                </ion-item>
-                <ion-item *ngIf="categoriaEditando">
-                    <ion-icon name="color-palette-outline" slot="start"></ion-icon>
-                    <ion-label position="stacked">Color</ion-label>
-                    <div class="color-picker">
-                        <div class="color-grid">
-                            <div *ngFor="let color of predefinedColors" 
-                                 class="color-option" 
-                                 [style.background-color]="color"
-                                 [class.selected]="categoriaEditando.color === color"
-                                 (click)="selectColor(color)">
-                            </div>
-                        </div>
-                        <div class="selected-color" [style.background-color]="categoriaEditando.color"></div>
-                    </div>
-                </ion-item>
-                <ion-button expand="block" (click)="guardarEdicion()" [disabled]="!categoriaEditando || !categoriaEditando.nombre">
-                    <ion-icon name="save-outline" slot="start"></ion-icon>
-                    Guardar Cambios
-                </ion-button>
-            </ion-content>
-        </ng-template>
-    </ion-modal>
 </ion-content> 
+

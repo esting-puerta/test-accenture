@@ -4,10 +4,6 @@ import { CategoriaService } from '../../services/categoria.service';
 import { Tarea } from '../../models/tarea.model';
 import { Categoria } from '../../models/categoria.model';
 import { Observable } from 'rxjs';
-import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
     selector: 'app-todo-list',
@@ -16,6 +12,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     standalone: false,
 })
 export class TodoListComponent implements OnInit {
+    
     tareas$: Observable<Tarea[]>;
     categorias$: Observable<Categoria[]>;
     nuevaTarea: Partial<Tarea> = {
@@ -47,7 +44,7 @@ export class TodoListComponent implements OnInit {
         } else if (action === 'filter') {
             this.showFilterSection = !this.showFilterSection;
             this.showNewTaskForm = false;
-            this.showTaskList = false;
+            this.showTaskList = true;
         }
     }
 

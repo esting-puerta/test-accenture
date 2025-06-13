@@ -10,8 +10,9 @@
 </div>
 
 <ion-content class="ion-padding">
+
     <!-- Mini-cards para seleccionar acción -->
-    <ion-grid>
+    <ion-grid *ngIf="!showNewTaskForm && !showTaskList">
         <ion-row class="ion-align-items-stretch">
             <ion-col size="12" size-md="6">
                 <ion-card class="action-card ion-activatable ripple-parent" (click)="selectAction('create')">
@@ -34,100 +35,11 @@
         </ion-row>
     </ion-grid>
 
+
     <!-- Formulario para nueva tarea -->
-    <ion-card *ngIf="showNewTaskForm">
-        <ion-card-header>
-            <ion-card-title>
-                <ion-icon name="add-circle-outline"></ion-icon>
-                Nueva Tarea
-            </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-item>
-                <ion-icon name="create-outline" slot="start"></ion-icon>
-                <ion-label position="stacked">Título</ion-label>
-                <ion-input [(ngModel)]="nuevaTarea.titulo" placeholder="Ingrese el título"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-icon name="document-text-outline" slot="start"></ion-icon>
-                <ion-label position="stacked">Descripción</ion-label>
-                <ion-textarea [(ngModel)]="nuevaTarea.descripcion" placeholder="Ingrese la descripción"></ion-textarea>
-            </ion-item>
-            <ion-item>
-                <ion-icon name="pricetag-outline" slot="start"></ion-icon>
-                <ion-label>Categoría</ion-label>
-                <ion-select [(ngModel)]="nuevaTarea.categoriaId">
-                    <ion-select-option [value]="0">Seleccione una categoría</ion-select-option>
-                    <ion-select-option *ngFor="let categoria of categorias$ | async" [value]="categoria.id">
-                        {{categoria.nombre}}
-                    </ion-select-option>
-                </ion-select>
-            </ion-item>
-            <ion-button expand="block" (click)="agregarTarea()" [disabled]="!nuevaTarea.titulo || !nuevaTarea.categoriaId">
-                <ion-icon name="add-circle-outline" slot="start"></ion-icon>
-                Agregar Tarea
-            </ion-button>
-        </ion-card-content>
-    </ion-card>
+    <app-todo-list-form *ngIf="showNewTaskForm" (return)="showNewTaskForm = false"></app-todo-list-form>
 
-    <!-- Filtro de categorías -->
-    <ion-card *ngIf="showFilterSection">
-        <ion-card-header>
-            <ion-card-title>
-                <ion-icon name="filter-outline"></ion-icon>
-                Filtros
-            </ion-card-title>
-            <ion-buttons slot="end">
-                <ion-button (click)="goBackToActions()">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                </ion-button>
-            </ion-buttons>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-item>
-                <ion-icon name="pricetag-outline" slot="start"></ion-icon>
-                <ion-label>Categoría</ion-label>
-                <ion-select [(ngModel)]="categoriaSeleccionada" (ionChange)="onSegmentChange($event)">
-                    <ion-select-option [value]="0">Todas</ion-select-option>
-                    <ion-select-option *ngFor="let categoria of categorias$ | async" [value]="categoria.id">
-                        {{categoria.nombre}}
-                    </ion-select-option>
-                </ion-select>
-            </ion-item>
-        </ion-card-content>
-    </ion-card>
+    <app-todo-list-filter *ngIf="showTaskList" (return)="showNewTaskForm = false; showTaskList = false"></app-todo-list-filter>
 
-    <!-- Lista de tareas -->
-    <ion-card *ngIf="showTaskList">
-        <ion-card-header>
-            <ion-card-title>
-                <ion-icon name="list-outline"></ion-icon>
-                Lista de Tareas
-            </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-list>
-                <ion-item-sliding *ngFor="let tarea of tareas$ | async">
-                    <ion-item [class.completada]="tarea.completada">
-                        <ion-checkbox slot="start" [(ngModel)]="tarea.completada" (ionChange)="toggleCompletada(tarea)">
-                        </ion-checkbox>
-                        <ion-label>
-                            <h2>{{tarea.titulo}}</h2>
-                            <p>{{tarea.descripcion}}</p>
-                            <ng-container *ngFor="let cat of categorias$ | async">
-                                <ion-badge *ngIf="cat.id === tarea.categoriaId" [style.background-color]="cat.color">
-                                    {{cat.nombre}}
-                                </ion-badge>
-                            </ng-container>
-                        </ion-label>
-                    </ion-item>
-                    <ion-item-options side="end">
-                        <ion-item-option color="danger" (click)="eliminarTarea(tarea.id)">
-                            <ion-icon slot="icon-only" name="trash"></ion-icon>
-                        </ion-item-option>
-                    </ion-item-options>
-                </ion-item-sliding>
-            </ion-list>
-        </ion-card-content>
-    </ion-card>
 </ion-content> 
+

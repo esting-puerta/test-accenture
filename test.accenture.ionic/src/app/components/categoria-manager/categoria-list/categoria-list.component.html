@@ -1,0 +1,37 @@
+<ion-col size="12" size-md="6">
+    <ion-button fill="block" class="back-button" (click)="goBack()">
+        <ion-icon name="arrow-back-outline" style="color: var(--ion-color-primary);"></ion-icon>
+        Regresar
+    </ion-button>
+</ion-col>
+
+<ion-card>
+    <ion-card-header>
+        <ion-card-title>
+            <ion-icon name="list-outline"></ion-icon>
+            Categorías Existentes
+        </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-list>
+            <ion-item-sliding *ngFor="let categoria of categorias$ | async">
+                <ion-item>
+                    <ion-label>
+                        <h2>{{categoria.nombre}}</h2>
+                    </ion-label>
+                    <ion-badge slot="end" [style.background-color]="categoria.color">
+                        Color
+                    </ion-badge>
+                </ion-item>
+                <ion-item-options side="end">
+                    <ion-item-option color="primary" (click)="iniciarEdicion(categoria)">
+                        <ion-icon slot="icon-only" name="create"></ion-icon>
+                    </ion-item-option>
+                    <ion-item-option color="danger" (click)="eliminarCategoria(categoria.id)">
+                        <ion-icon slot="icon-only" name="trash"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+    </ion-card-content>
+</ion-card>

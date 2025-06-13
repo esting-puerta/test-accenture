@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'categorias',
-    component: CategoriaManagerComponent
+    loadChildren: () => import('./components/categoria-manager/categoria.module').then( m => m.CategoriaModule)
   }
 ];
 

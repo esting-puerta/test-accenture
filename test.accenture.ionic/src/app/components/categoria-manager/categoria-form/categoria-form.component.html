@@ -1,0 +1,39 @@
+<ion-col size="12" size-md="6">
+    <ion-button fill="block" class="back-button" (click)="goBack()">
+        <ion-icon name="arrow-back-outline" style="color: var(--ion-color-primary);"></ion-icon>
+        Regresar
+    </ion-button>
+</ion-col>
+
+<!-- Card para crear nueva categoría -->
+<ion-card>
+    <ion-card-header>
+        <ion-card-title>
+            <ion-icon name="add-circle-outline"></ion-icon>
+            Nueva Categoría
+        </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-item>
+            <ion-icon name="pricetag-outline" slot="start"></ion-icon>
+            <ion-label position="stacked">Nombre</ion-label>
+            <ion-input [(ngModel)]="categoria.nombre" placeholder="Ingrese el nombre de la categoría"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="color-palette-outline" slot="start"></ion-icon>
+            <ion-label position="stacked">Color</ion-label>
+            <div class="color-picker">
+                <div class="color-grid">
+                    <div *ngFor="let color of predefinedColors" class="color-option" [style.background-color]="color"
+                        [class.selected]="categoria.color === color" (click)="selectColor(color)">
+                    </div>
+                </div>
+                <div class="selected-color" [style.background-color]="categoria.color"></div>
+            </div>
+        </ion-item>
+        <ion-button expand="block" (click)="agregarCategoria()" [disabled]="!categoria.nombre">
+            <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+            Agregar Categoría
+        </ion-button>
+    </ion-card-content>
+</ion-card>

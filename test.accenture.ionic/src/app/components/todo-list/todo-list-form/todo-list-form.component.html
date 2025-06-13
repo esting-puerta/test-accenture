@@ -1,3 +1,46 @@
-<p>
-  todo-list-form works!
-</p>
+
+<ion-col size="12" size-md="6">
+    <ion-button fill="block" class="back-button" (click)="goBack()">
+        <ion-icon name="arrow-back-outline" style="color: var(--ion-color-primary);"></ion-icon>
+        Regresar
+    </ion-button>
+</ion-col>
+
+<!-- Formulario para nueva tarea -->
+<ion-card>
+
+    <ion-card-header>
+        <ion-card-title>
+            <ion-icon name="add-circle-outline"></ion-icon>
+            Nueva Tarea
+        </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-item>
+            <ion-icon name="create-outline" slot="start"></ion-icon>
+            <ion-label position="stacked">Título</ion-label>
+            <ion-input [(ngModel)]="nuevaTarea.titulo" placeholder="Ingrese el título"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="document-text-outline" slot="start"></ion-icon>
+            <ion-label position="stacked">Descripción</ion-label>
+            <ion-textarea [(ngModel)]="nuevaTarea.descripcion" placeholder="Ingrese la descripción"></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="pricetag-outline" slot="start"></ion-icon>
+            <ion-label>Categoría</ion-label>
+            <ion-select [(ngModel)]="nuevaTarea.categoriaId">
+                <ion-select-option [value]="0">Seleccione una categoría</ion-select-option>
+                <ion-select-option *ngFor="let categoria of categorias$ | async" [value]="categoria.id">
+                    {{categoria.nombre}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-button expand="block" (click)="agregarTarea()" [disabled]="!nuevaTarea.titulo || !nuevaTarea.categoriaId">
+            <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+            Agregar Tarea
+        </ion-button>
+        
+        
+    </ion-card-content>
+</ion-card>
